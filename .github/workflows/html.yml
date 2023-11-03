@@ -18,4 +18,4 @@ jobs:
           KEY: ${{ secrets.SSH_KEY }}
         with:
           source: "*"
-          target: "/tmp/"
+          target: "var/www/html"
