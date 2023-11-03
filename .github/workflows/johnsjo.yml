@@ -1,7 +1,8 @@
 name: Identifier Name
 on:
   push:
-    branches: [ branch-name ]
+    branches:
+      - main
 
 jobs:
   deploy:    
