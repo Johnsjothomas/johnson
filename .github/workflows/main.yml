@@ -1,4 +1,4 @@
-name: johnson
+name: Run Laravel application
 'on':
   push:
     branches:
