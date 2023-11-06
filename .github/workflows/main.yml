@@ -1,0 +1,26 @@
+name: Run Laravel application
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  run-application-on-ec2:
+    name: Deploy 
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: SSH to instance
+        env:
+            PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+            HOSTNAME: ${{secrets.SSH_HOST}}
+            USER_NAME: ${{secrets.USER_NAME}}
+        run: |
+          echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
+          ssh -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOSTNAME} '
+
+              cd /home/ubuntu/ &&
+              git clone git@github.com:Johnsjothomas/johnson.git/home/johnson/johnson.git &&
+              sudo rsync -av /home/johnson/johnson.git/ /var/www/html/
+              '
