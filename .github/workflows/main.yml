@@ -1,25 +1,23 @@
 name: Identifier Name
-on:
+'on':
   push:
     branches:
       - main
-
 jobs:
-  run-application-on-ec2:   
+  run-application-on-ec2:
     name: Deploy
     runs-on: ubuntu_latest
-    
     steps:
-        name: SSH to instance
-        env:
-            PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-            HOSTNAME: ${{ secrets.SSH_HOST }}
-            USER_NAME: ${{ secrets.USER_NAME }}
-        run:
-          echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
-          ssh -o StrictHostKeyChecking=no -1 private_key ${USER_NAME}@S{HOSTNAME} '
+      name: SSH to instance
+      env:
+        PRIVATE_KEY: '${{ secrets.SSH_PRIVATE_KEY }}'
+        HOSTNAME: '${{ secrets.SSH_HOST }}'
+        USER_NAME: '${{ secrets.USER_NAME }}'
+      run:
+        echo "$PRIVATE_KEY" > private_key && chmod 600 private_key ssh -o
+        StrictHostKeyChecking=no -1 private_key ${USER_NAME}@S{HOSTNAME} '
 
-              cd /home/ubuntu/ &&
-              git clone git@github.com:Johnsjothomas/johnson.git/home/ubuntu/johnson.git &&
-              sudo rsync -av /home/ubuntu/johnson.git/ /var/ww/html
-              '
+        cd /home/ubuntu/ && git clone
+        git@github.com:Johnsjothomas/johnson.git/home/ubuntu/johnson.git && sudo
+        rsync -av /home/ubuntu/johnson.git/ /var/ww/html
+        '
