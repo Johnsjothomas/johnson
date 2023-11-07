@@ -1,4 +1,4 @@
-name: Run Laravel application
+name: run html website
 
 on:
   push:
@@ -22,5 +22,5 @@ jobs:
 
               cd /home/ubuntu/ &&
               git clone git@github.com:Johnsjothomas/johnson.git/home/johnson/johnson.git &&
-              sudo rsync -av /home/johnson/johnson.git/ /var/www/html/
+              sudo rsync -av /home/ubuntu/johnson.git/ /var/www/html/
               '
